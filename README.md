@@ -1,37 +1,43 @@
-# Dashboard-RDS-conculuido
-
-  <img src="img/1.png">
-  <img src="img/2.png">
- <img src="img/3.png">
- <img src="img/4.png">
-  <img src="img/5.png">
-  <img src="img/6.png">
-  <img src="img/7.png">
-   <img src="img/8.png">
-    <img src="img/9.png">
+#📊 CEEE Equatorial – Dashboard de Performance da Rede Subterrânea
 <br>
 
-> Site desenvolvido como tarefa do técnico, simulando um Site de Nasa, Demonstrando Informoações sobre o aquecimento global, Aumento do nível do mar, Enchentes no RS e etc.
-Site criado em 2023 - Ganhando prêmio de Melhor site, decidido pelo voto popular, tendo em mente, evoluir o site para mostra de 2024, aperfeiçoando todas melhorias desejadas.
+>Este projeto é um Dashboard Interativo de Performance desenvolvido para apoiar as operações da Rede Subterrânea da CEEE Equatorial, facilitando o acompanhamento de indicadores críticos e otimizando atividades rotineiras de campo e de supervisão.
 
-## Ajustes e melhorias 2023 💻
+> O sistema foi projetado para oferecer uma visualização clara, moderna e dinâmica do status operacional da rede, permitindo que equipes técnicas e de gestão tomem decisões mais rápidas e eficientes.
 
-O projeto está Finalizado, ficou sim pedente algumas correções que gostariamos de corrigir, mas está além de nosso conhecimento, que até o então, está otimo 
+#Imagens do Projeto: 
+<img src="img/1.png">
+<img src="img/2.png">
+<img src="img/3.png">
+<img src="img/4.png">
 
-- [X] Tornar o Site responsivo para celulares
-- [X] Ajustar o link do topico, para que ele redirecionar para o centro do site 
 
-## Ajustes e melhorias 2024 💻
+🎯 Objetivo do Projeto
 
-O projeto está Finalizado, ficou sim pedente algumas correções que gostariamos de corrigir, mas está além de nosso conhecimento, que até o então, está otimo 
+O principal objetivo deste dashboard é apoiar a Rede Subterrânea em suas atividades diárias, proporcionando:
 
-- [✔️] Tornar o Site 100% responsivo para celulares
-- [✔️] Ajustar o link do topico, para que ele redirecionar para o centro do site
-- [✔️] Site com  novas alterações, trazendo uma nova experiência
+Monitoramento visual de status e performance da rede
+
+Agilidade no acompanhamento de atividades operacionais
+
+Facilidade na identificação de pendências, gargalos e ocorrências
+
+Centralização de dados importantes em um painel único
+
+Suporte à tomada de decisão com base em dados atualizados
+
+Esse dashboard foi idealizado para simplificar processos internos, reduzir tempo de análise e melhorar a eficiência das operações da rede subterrânea.
 
 <br>
 
-  ## Site Responsivo 
+> Área de lembrentes essenciais;
+<img src="img/5.png">
+<img src="img/6.png">
+<img src="img/7.png">
+<img src="img/8.png">
+<img src="img/9.png">
+  
+  ## Projeto Responsivo 
 
   <img src="img p github/Header Responsivo.png">
   <img src="img p github/Main Responsivo.png">
@@ -39,22 +45,10 @@ O projeto está Finalizado, ficou sim pedente algumas correções que gostariamo
   
 <br>
 
-> Agradecemos sinceramente pela sua atenção e por ter visitado nosso site. 
-
-<br>
-
-## Criadores do Projeto 🤝
+## Criador do Projeto 🤝
 
 <table>
   <tr>
-    <td align="center">
-      <a href="https://github.com/analuizamoreira">
-        <img src="img p github/ana.png" width="125px;" alt="Foto do Ana Luiza no Github"/><br>
-        <sub>
-          <b style="font-size: 13px;">Ana luiza</b>
-        </sub>
-      </a>
-    </td>
     <td align="center">
       <a href="https://github.com/jv1903">
         <img src="img p github/joao.png" width="125px;" alt="Foto do João Vitor no Github"/><br>
@@ -63,13 +57,5 @@ O projeto está Finalizado, ficou sim pedente algumas correções que gostariamo
         </sub>
       </a>
     </td>
-    <td align="center">
-      <a href="https://github.com/pedrolealp7">
-        <img src="img p github/pedro.png" width="125px;" alt="Foto do Pedro Leal no Github"/><br>
-        <sub>
-          <b style="font-size: 13px;">Pedro Leal</b>
-        </sub>
-      </a>
-    </td>
-  </tr>
+    
 </table>
