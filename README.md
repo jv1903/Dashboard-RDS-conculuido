@@ -1,4 +1,4 @@
-📊 CEEE Equatorial – Dashboard de Performance da Rede Subterrânea
+<img width="321" height="648" alt="responsivo 1" src="https://github.com/user-attachments/assets/6803890e-40e7-4300-aeb3-0d7bde7e7a07" />📊 CEEE Equatorial – Dashboard de Performance da Rede Subterrânea
 <br>
 
 >Este projeto é um Dashboard Interativo de Performance desenvolvido para apoiar as operações da Rede Subterrânea da CEEE Equatorial, facilitando o acompanhamento de indicadores críticos e otimizando atividades rotineiras de campo e de supervisão.
@@ -14,6 +14,8 @@ Ao carregar a planilha, o sistema identifica os campos necessários e atualiza a
 O fluxo de uso é simples:
 
 Clique em Carregar Planilha.
+<br>
+
 <img src="img/1.png">
 
 Selecione o arquivo Excel contendo os dados atualizados.
@@ -21,8 +23,12 @@ Selecione o arquivo Excel contendo os dados atualizados.
 O dashboard processa a planilha e exibe todas as informações formatadas automaticamente.
 
 Não é necessário instalar nada adicional, nem configurar manualmente os campos — basta importar o Excel e o sistema ajusta tudo em tempo real.
+<br>
+<tr>
 
 Imagens do Projeto em funcionamento: 
+<br>
+
 <img src="img/2.png">
 <img src="img/3.png">
 <img src="img/4.png">
@@ -47,12 +53,16 @@ O principal objetivo deste dashboard é apoiar a Rede Subterrânea em suas ativi
 <img src="img/8.png">
 <img src="img/9.png">
   
-  ## Projeto Responsivo 
+  ## Projeto Responsivo 📱 
 
-  <img src="img p github/Header Responsivo.png">
-  <img src="img p github/Main Responsivo.png">
-  <img src="img p github/Footer responsivo.png">
-  
+  <img src="img/responsivo 1.png">
+  <br>
+  <img src="img/responsivo 2.png">
+  <br>
+  <img src="img/responsivo 3.png">
+  <br>
+  <img src="img/responsivo 4.png">
+  <br>
 <br>
 
 ## Criador do Projeto 🤝
@@ -61,7 +71,7 @@ O principal objetivo deste dashboard é apoiar a Rede Subterrânea em suas ativi
   <tr>
     <td align="center">
       <a href="https://github.com/jv1903">
-        <img src="img p github/joao.png" width="125px;" alt="Foto do João Vitor no Github"/><br>
+        <img src="img/eu.png" width="125px;" alt="Foto do João Vitor no Github"/><br>
         <sub>
           <b style="font-size: 10px;"João Vitor</b>
         </sub>
