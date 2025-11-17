@@ -1,11 +1,11 @@
-#📊 CEEE Equatorial – Dashboard de Performance da Rede Subterrânea
+📊 CEEE Equatorial – Dashboard de Performance da Rede Subterrânea
 <br>
 
 >Este projeto é um Dashboard Interativo de Performance desenvolvido para apoiar as operações da Rede Subterrânea da CEEE Equatorial, facilitando o acompanhamento de indicadores críticos e otimizando atividades rotineiras de campo e de supervisão.
 
 > O sistema foi projetado para oferecer uma visualização clara, moderna e dinâmica do status operacional da rede, permitindo que equipes técnicas e de gestão tomem decisões mais rápidas e eficientes.
 
-#Imagens do Projeto: 
+Imagens do Projeto: 
 <img src="img/1.png">
 <img src="img/2.png">
 <img src="img/3.png">
