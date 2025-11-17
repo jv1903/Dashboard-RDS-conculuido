@@ -72,7 +72,7 @@ O principal objetivo deste dashboard é apoiar a Rede Subterrânea em suas ativi
   <tr>
     <td align="center">
       <a href="https://github.com/jv1903">
-        <img src="img/eu" width="125px;" alt="Foto do João Vitor no Github"/><br>
+        <img src="img/eu.jpg" width="125px;" alt="Foto do João Vitor no Github"/><br>
         <sub>
           <b style="font-size: 10px;"João Vitor</b>
         </sub>
