@@ -6,7 +6,8 @@
 > O sistema foi projetado para oferecer uma visualização clara, moderna e dinâmica do status operacional da rede, permitindo que equipes técnicas e de gestão tomem decisões mais rápidas e eficientes.
 
 <tr>
->Como o Dashboard Funciona
+  
+> Como o Dashboard Funciona
 
 Este dashboard foi desenvolvido para leitura e interpretação automática de dados a partir de um arquivo Excel.
 Ao carregar a planilha, o sistema identifica os campos necessários e atualiza automaticamente todos os indicadores, cards, listas, alertas e gráficos conforme o padrão estabelecido no projeto.
