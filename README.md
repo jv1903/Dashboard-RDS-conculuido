@@ -6,7 +6,8 @@
 > O sistema foi projetado para oferecer uma visualização clara, moderna e dinâmica do status operacional da rede, permitindo que equipes técnicas e de gestão tomem decisões mais rápidas e eficientes.
 
 <tr>
-📊 Como o Dashboard Funciona
+  
+> Como o Dashboard Funciona
 
 Este dashboard foi desenvolvido para leitura e interpretação automática de dados a partir de um arquivo Excel.
 Ao carregar a planilha, o sistema identifica os campos necessários e atualiza automaticamente todos os indicadores, cards, listas, alertas e gráficos conforme o padrão estabelecido no projeto.
@@ -14,6 +15,8 @@ Ao carregar a planilha, o sistema identifica os campos necessários e atualiza a
 O fluxo de uso é simples:
 
 Clique em Carregar Planilha.
+<br>
+
 <img src="img/1.png">
 
 Selecione o arquivo Excel contendo os dados atualizados.
@@ -21,8 +24,12 @@ Selecione o arquivo Excel contendo os dados atualizados.
 O dashboard processa a planilha e exibe todas as informações formatadas automaticamente.
 
 Não é necessário instalar nada adicional, nem configurar manualmente os campos — basta importar o Excel e o sistema ajusta tudo em tempo real.
+<br>
+<tr>
 
 Imagens do Projeto em funcionamento: 
+<br>
+
 <img src="img/2.png">
 <img src="img/3.png">
 <img src="img/4.png">
@@ -47,12 +54,16 @@ O principal objetivo deste dashboard é apoiar a Rede Subterrânea em suas ativi
 <img src="img/8.png">
 <img src="img/9.png">
   
-  ## Projeto Responsivo 
+  ## Projeto Responsivo 📱 
 
-  <img src="img p github/Header Responsivo.png">
-  <img src="img p github/Main Responsivo.png">
-  <img src="img p github/Footer responsivo.png">
-  
+  <img src="img/responsivo 1.png">
+  <br>
+  <img src="img/responsivo 2.png">
+  <br>
+  <img src="img/responsivo 3.png">
+  <br>
+  <img src="img/responsivo 4.png">
+  <br>
 <br>
 
 ## Criador do Projeto 🤝
@@ -61,7 +72,7 @@ O principal objetivo deste dashboard é apoiar a Rede Subterrânea em suas ativi
   <tr>
     <td align="center">
       <a href="https://github.com/jv1903">
-        <img src="img p github/joao.png" width="125px;" alt="Foto do João Vitor no Github"/><br>
+        <img src="img/eu.jpg" width="125px;" alt="Foto do João Vitor no Github"/><br>
         <sub>
           <b style="font-size: 10px;"João Vitor</b>
         </sub>
