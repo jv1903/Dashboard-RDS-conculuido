@@ -4,17 +4,11 @@ import { Calendar, MessageSquare } from "lucide-react";
 
 interface MessagesAndScheduleProps {
   messages: Array<{ title: string; content: string }>;
+  programacao: string[];
 }
 
-const MessagesAndSchedule = ({ messages }: MessagesAndScheduleProps) => {
-  // Separar programação das mensagens regulares
-  const scheduleEntry = messages.find(msg => 
-    msg.title.toLowerCase().includes("programação") || msg.title.toLowerCase().includes("programacao")
-  );
-  
-  const regularMessages = messages.filter(msg => 
-    !msg.title.toLowerCase().includes("programação") && !msg.title.toLowerCase().includes("programacao")
-  );
+const MessagesAndSchedule = ({ messages, programacao }: MessagesAndScheduleProps) => {
+  const regularMessages = messages;
 
   // Garantir sempre 4 mensagens
   const messagesList = Array.from({ length: 4 }, (_, index) => {
@@ -26,7 +20,7 @@ const MessagesAndSchedule = ({ messages }: MessagesAndScheduleProps) => {
     };
   });
 
-  const hasSchedule = !!scheduleEntry;
+  const hasSchedule = programacao && programacao.length > 0;
 
   return (
     <Card className="p-6 bg-card border-border">
@@ -80,15 +74,20 @@ const MessagesAndSchedule = ({ messages }: MessagesAndScheduleProps) => {
             </div>
             <div className="flex-1">
               <h3 className="text-lg font-semibold text-foreground mb-4">
-                {hasSchedule ? scheduleEntry.title : "PROGRAMAÇÃO"}
+                PROGRAMAÇÃO
               </h3>
               <div className="space-y-3">
                 {hasSchedule ? (
-                  <div className="p-4 rounded-lg bg-muted/50 border border-border">
-                    <p className="text-foreground font-medium">
-                      {scheduleEntry.content}
-                    </p>
-                  </div>
+                  programacao.map((item, index) => (
+                    <div 
+                      key={index}
+                      className="p-4 rounded-lg bg-muted/50 border border-border"
+                    >
+                      <p className="text-foreground font-medium">
+                        {item}
+                      </p>
+                    </div>
+                  ))
                 ) : (
                   <div className="p-4 rounded-lg bg-muted/50 border border-border">
                     <p className="text-muted-foreground">

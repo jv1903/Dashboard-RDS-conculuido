@@ -36,7 +36,7 @@ const StatusOverview = ({
   }];
   return <Card className="p-6 bg-card border-border transition-all hover:shadow-lg py-[80px]">
       <div className="space-y-4">
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between py-0 my-0">
           <h3 className="text-lg font-semibold text-foreground">Status dos Projetos</h3>
           <Badge variant="outline" className="text-xs">
             Total: {total}

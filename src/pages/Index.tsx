@@ -15,9 +15,10 @@ export interface DashboardData {
   "projetos_em_projeto": number;
   "projetos_concluidos": number;
   "als_desligados": string[];
-  "Atualizações do dia": string;
-  "Atualizações em tempo real": string;
+  "Atualizações do dia": string[];
+  "Atualizações em tempo real": string[];
   "mensagens": Array<{ title: string; content: string }>;
+  "programacao": string[];
 }
 
 const Index = () => {
@@ -46,6 +47,7 @@ const Index = () => {
     const desligadosIdx = findColumnIndex(['desligado', 'als desligado', 'alimentadores']);
     const atualizacoesDiaIdx = findColumnIndex(['atualização', 'atualização do dia', 'atualizações do dia']);
     const atualizacoesTempoRealIdx = findColumnIndex(['tempo real', 'real time', 'alerta']);
+    const programacaoIdx = findColumnIndex(['programação', 'programacao']);
 
     // Contar projetos por status
     let emObra = 0;
@@ -93,7 +95,7 @@ const Index = () => {
 
     // Processar mensagens - buscar colunas de mensagens em ordem
     const mensagens: Array<{ title: string; content: string }> = [];
-    const skipColumns = [statusIdx, desligadosIdx, atualizacoesDiaIdx, atualizacoesTempoRealIdx];
+    const skipColumns = [statusIdx, desligadosIdx, atualizacoesDiaIdx, atualizacoesTempoRealIdx, programacaoIdx];
     
     for (let colIdx = 0; colIdx < headers.length; colIdx++) {
       if (skipColumns.includes(colIdx)) continue;
@@ -106,14 +108,57 @@ const Index = () => {
       }
     }
 
+    // Processar TODAS as linhas da coluna programação
+    const programacaoList: string[] = [];
+    if (programacaoIdx !== -1) {
+      for (let i = 1; i < jsonData.length; i++) {
+        const row = jsonData[i];
+        if (row && row[programacaoIdx]) {
+          const value = row[programacaoIdx].toString().trim();
+          if (value) {
+            programacaoList.push(value);
+          }
+        }
+      }
+    }
+
+    // Processar TODAS as linhas da coluna Atualizações do dia
+    const atualizacoesDiaList: string[] = [];
+    if (atualizacoesDiaIdx !== -1) {
+      for (let i = 1; i < jsonData.length; i++) {
+        const row = jsonData[i];
+        if (row && row[atualizacoesDiaIdx]) {
+          const value = row[atualizacoesDiaIdx].toString().trim();
+          if (value) {
+            atualizacoesDiaList.push(value);
+          }
+        }
+      }
+    }
+
+    // Processar TODAS as linhas da coluna Atualizações em tempo real
+    const atualizacoesTempoRealList: string[] = [];
+    if (atualizacoesTempoRealIdx !== -1) {
+      for (let i = 1; i < jsonData.length; i++) {
+        const row = jsonData[i];
+        if (row && row[atualizacoesTempoRealIdx]) {
+          const value = row[atualizacoesTempoRealIdx].toString().trim();
+          if (value) {
+            atualizacoesTempoRealList.push(value);
+          }
+        }
+      }
+    }
+
     return {
       "projetos_em_obra": emObra,
       "projetos_em_projeto": emProjeto,
       "projetos_concluidos": concluidos,
       "als_desligados": desligadosList,
-      "Atualizações do dia": firstDataRow[atualizacoesDiaIdx]?.toString() || "Sem atualizações",
-      "Atualizações em tempo real": firstDataRow[atualizacoesTempoRealIdx]?.toString() || "",
-      "mensagens": mensagens
+      "Atualizações do dia": atualizacoesDiaList,
+      "Atualizações em tempo real": atualizacoesTempoRealList,
+      "mensagens": mensagens,
+      "programacao": programacaoList
     };
   };
 
@@ -264,24 +309,24 @@ const Index = () => {
           </Card>
         ) : (
           <div className="space-y-6">
-            {/* Row 1: Status Overview + Network Status */}
+            {/* Row 1: Real-time Alerts + Network Status */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              <RealTimeAlerts alert={data["Atualizações em tempo real"]} />
+              <NetworkStatus disconnectedList={data.als_desligados} />
+            </div>
+
+            {/* Row 2: Status Overview + Daily Updates */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               <StatusOverview 
                 emObra={data.projetos_em_obra}
                 emProjeto={data.projetos_em_projeto}
                 concluidos={data.projetos_concluidos}
               />
-              <NetworkStatus disconnectedList={data.als_desligados} />
-            </div>
-
-            {/* Row 2: Real-time Alerts + Daily Updates */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-              <RealTimeAlerts alert={data["Atualizações em tempo real"]} />
               <DailyUpdates update={data["Atualizações do dia"]} />
             </div>
 
             {/* Row 3: Messages and Schedule (Full Width) */}
-            <MessagesAndSchedule messages={data.mensagens} />
+            <MessagesAndSchedule messages={data.mensagens} programacao={data.programacao} />
           </div>
         )}
       </main>
