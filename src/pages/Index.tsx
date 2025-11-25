@@ -15,6 +15,7 @@ export interface DashboardData {
   "projetos_em_projeto": number;
   "projetos_concluidos": number;
   "als_desligados": string[];
+  "atualizacoes_dia_titulo": string;
   "Atualizações do dia": string[];
   "Atualizações em tempo real": string[];
   "mensagens": Array<{ title: string; content: string }>;
@@ -45,7 +46,7 @@ const Index = () => {
 
     const statusIdx = findColumnIndex(['status', 'situação', 'estado']);
     const desligadosIdx = findColumnIndex(['desligado', 'als desligado', 'alimentadores']);
-    const atualizacoesDiaIdx = findColumnIndex(['atualização', 'atualização do dia', 'atualizações do dia']);
+    const atualizacoesDiaIdx = 3; // Coluna D (índice 3)
     const atualizacoesTempoRealIdx = findColumnIndex(['tempo real', 'real time', 'alerta']);
     const programacaoIdx = findColumnIndex(['programação', 'programacao']);
 
@@ -122,14 +123,22 @@ const Index = () => {
       }
     }
 
-    // Processar TODAS as linhas da coluna Atualizações do dia
+    // Processar TODAS as linhas da coluna D (Atualizações do dia)
+    // Primeiro elemento não-vazio é o título, demais são atualizações
+    let atualizacoesDiaTitulo = "Atualizações do Dia";
     const atualizacoesDiaList: string[] = [];
-    if (atualizacoesDiaIdx !== -1) {
-      for (let i = 1; i < jsonData.length; i++) {
-        const row = jsonData[i];
-        if (row && row[atualizacoesDiaIdx]) {
-          const value = row[atualizacoesDiaIdx].toString().trim();
-          if (value) {
+    let primeiroElemento = true;
+    for (let i = 1; i < jsonData.length; i++) {
+      const row = jsonData[i];
+      if (row && row[atualizacoesDiaIdx]) {
+        const value = row[atualizacoesDiaIdx].toString().trim();
+        if (value) {
+          if (primeiroElemento) {
+            // Primeiro elemento não-vazio é o título
+            atualizacoesDiaTitulo = value;
+            primeiroElemento = false;
+          } else {
+            // Demais elementos são atualizações
             atualizacoesDiaList.push(value);
           }
         }
@@ -155,6 +164,7 @@ const Index = () => {
       "projetos_em_projeto": emProjeto,
       "projetos_concluidos": concluidos,
       "als_desligados": desligadosList,
+      "atualizacoes_dia_titulo": atualizacoesDiaTitulo,
       "Atualizações do dia": atualizacoesDiaList,
       "Atualizações em tempo real": atualizacoesTempoRealList,
       "mensagens": mensagens,
@@ -322,7 +332,7 @@ const Index = () => {
                 emProjeto={data.projetos_em_projeto}
                 concluidos={data.projetos_concluidos}
               />
-              <DailyUpdates update={data["Atualizações do dia"]} />
+              <DailyUpdates title={data.atualizacoes_dia_titulo} update={data["Atualizações do dia"]} />
             </div>
 
             {/* Row 3: Messages and Schedule (Full Width) */}

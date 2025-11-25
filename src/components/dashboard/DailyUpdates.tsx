@@ -2,9 +2,11 @@ import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Calendar, CheckCircle } from "lucide-react";
 interface DailyUpdatesProps {
+  title: string;
   update: string[];
 }
 const DailyUpdates = ({
+  title,
   update
 }: DailyUpdatesProps) => {
   const hasUpdates = update && update.length > 0;
@@ -12,7 +14,7 @@ const DailyUpdates = ({
   return <Card className="p-6 bg-card border-border transition-all hover:shadow-lg">
       <div className="space-y-4">
         <div className="flex items-center justify-between">
-          <h3 className="text-lg font-semibold text-foreground">Atualizações do Dia</h3>
+          <h3 className="text-lg font-semibold text-foreground">{title}</h3>
           <Badge variant="outline" className="text-xs">
             <Calendar className="h-3 w-3 mr-1" />
             Hoje
