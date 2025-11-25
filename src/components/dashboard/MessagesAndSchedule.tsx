@@ -3,7 +3,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Calendar, MessageSquare } from "lucide-react";
 
 interface MessagesAndScheduleProps {
-  messages: Array<{ title: string; content: string }>;
+  messages: Array<{ title: string; content: string[] }>;
   programacao: string[];
 }
 
@@ -16,7 +16,7 @@ const MessagesAndSchedule = ({ messages, programacao }: MessagesAndScheduleProps
     return {
       id: `msg-${index + 1}`,
       title: message?.title || `Mensagem ${index + 1}`,
-      content: message?.content || "Sem informações disponíveis"
+      content: message?.content || []
     };
   });
 
@@ -47,12 +47,29 @@ const MessagesAndSchedule = ({ messages, programacao }: MessagesAndScheduleProps
                 <MessageSquare className="h-5 w-5 text-primary" />
               </div>
               <div className="flex-1">
-                <h3 className="text-lg font-semibold text-foreground mb-2">
+                <h3 className="text-lg font-semibold text-foreground mb-4">
                   {message.title}
                 </h3>
-                <p className="text-muted-foreground leading-relaxed">
-                  {message.content}
-                </p>
+                <div className="space-y-3">
+                  {message.content.length > 0 ? (
+                    message.content.map((item, index) => (
+                      <div 
+                        key={index}
+                        className="p-4 rounded-lg bg-muted/50 border border-border"
+                      >
+                        <p className="text-foreground font-medium">
+                          {item}
+                        </p>
+                      </div>
+                    ))
+                  ) : (
+                    <div className="p-4 rounded-lg bg-muted/50 border border-border">
+                      <p className="text-muted-foreground">
+                        Sem informações disponíveis
+                      </p>
+                    </div>
+                  )}
+                </div>
               </div>
             </div>
             

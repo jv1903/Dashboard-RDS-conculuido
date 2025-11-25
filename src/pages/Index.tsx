@@ -18,7 +18,7 @@ export interface DashboardData {
   "atualizacoes_dia_titulo": string;
   "Atualizações do dia": string[];
   "Atualizações em tempo real": string[];
-  "mensagens": Array<{ title: string; content: string }>;
+  "mensagens": Array<{ title: string; content: string[] }>;
   "programacao": string[];
 }
 
@@ -94,18 +94,30 @@ const Index = () => {
     // Pegar atualizações da primeira linha de dados
     const firstDataRow = jsonData[1];
 
-    // Processar mensagens - buscar colunas de mensagens em ordem
-    const mensagens: Array<{ title: string; content: string }> = [];
+    // Processar mensagens - buscar colunas de mensagens em ordem e coletar TODAS as linhas
+    const mensagens: Array<{ title: string; content: string[] }> = [];
     const skipColumns = [statusIdx, desligadosIdx, atualizacoesDiaIdx, atualizacoesTempoRealIdx, programacaoIdx];
     
     for (let colIdx = 0; colIdx < headers.length; colIdx++) {
       if (skipColumns.includes(colIdx)) continue;
       
       const header = jsonData[0][colIdx]?.toString().trim();
-      const value = firstDataRow[colIdx]?.toString().trim();
+      if (!header) continue;
       
-      if (header && value) {
-        mensagens.push({ title: header, content: value });
+      // Coletar TODAS as linhas dessa coluna
+      const contentList: string[] = [];
+      for (let i = 1; i < jsonData.length; i++) {
+        const row = jsonData[i];
+        if (row && row[colIdx]) {
+          const value = row[colIdx].toString().trim();
+          if (value) {
+            contentList.push(value);
+          }
+        }
+      }
+      
+      if (contentList.length > 0) {
+        mensagens.push({ title: header, content: contentList });
       }
     }
 
