@@ -1,82 +1,73 @@
-📊 CEEE Equatorial – Dashboard de Performance da Rede Subterrânea
-<br>
+# Welcome to your Lovable project
 
->Este projeto é um Dashboard Interativo de Performance desenvolvido para apoiar as operações da Rede Subterrânea da CEEE Equatorial, facilitando o acompanhamento de indicadores críticos e otimizando atividades rotineiras de campo e de supervisão.
+## Project info
 
-> O sistema foi projetado para oferecer uma visualização clara, moderna e dinâmica do status operacional da rede, permitindo que equipes técnicas e de gestão tomem decisões mais rápidas e eficientes.
+**URL**: https://lovable.dev/projects/e320684d-0c69-49be-a95e-42a9942c502a
 
-<tr>
-  
-> Como o Dashboard Funciona
+## How can I edit this code?
 
-Este dashboard foi desenvolvido para leitura e interpretação automática de dados a partir de um arquivo Excel.
-Ao carregar a planilha, o sistema identifica os campos necessários e atualiza automaticamente todos os indicadores, cards, listas, alertas e gráficos conforme o padrão estabelecido no projeto.
+There are several ways of editing your application.
 
-O fluxo de uso é simples:
+**Use Lovable**
 
-Clique em Carregar Planilha.
-<br>
+Simply visit the [Lovable Project](https://lovable.dev/projects/e320684d-0c69-49be-a95e-42a9942c502a) and start prompting.
 
-<img src="img/1.png">
+Changes made via Lovable will be committed automatically to this repo.
 
-Selecione o arquivo Excel contendo os dados atualizados.
+**Use your preferred IDE**
 
-O dashboard processa a planilha e exibe todas as informações formatadas automaticamente.
+If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
 
-Não é necessário instalar nada adicional, nem configurar manualmente os campos — basta importar o Excel e o sistema ajusta tudo em tempo real.
-<br>
-<tr>
+The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
 
-Imagens do Projeto em funcionamento: 
-<br>
+Follow these steps:
 
-<img src="img/2.png">
-<img src="img/3.png">
-<img src="img/4.png">
+```sh
+# Step 1: Clone the repository using the project's Git URL.
+git clone <YOUR_GIT_URL>
 
+# Step 2: Navigate to the project directory.
+cd <YOUR_PROJECT_NAME>
 
-🎯 Objetivo do Projeto
+# Step 3: Install the necessary dependencies.
+npm i
 
-O principal objetivo deste dashboard é apoiar a Rede Subterrânea em suas atividades diárias, proporcionando:
-° Monitoramento visual de status e performance da rede
-° Agilidade no acompanhamento de atividades operacionais
-° Facilidade na identificação de pendências, gargalos e ocorrências
-° Centralização de dados importantes em um painel único
-° Suporte à tomada de decisão com base em dados atualizados
-° Esse dashboard foi idealizado para simplificar processos internos, reduzir tempo de análise e melhorar a eficiência das operações da rede subterrânea.
+# Step 4: Start the development server with auto-reloading and an instant preview.
+npm run dev
+```
 
-<br>
+**Edit a file directly in GitHub**
 
-> Área de lembrentes essenciais;
-<img src="img/5.png">
-<img src="img/6.png">
-<img src="img/7.png">
-<img src="img/8.png">
-<img src="img/9.png">
-  
-  ## Projeto Responsivo 📱 
+- Navigate to the desired file(s).
+- Click the "Edit" button (pencil icon) at the top right of the file view.
+- Make your changes and commit the changes.
 
-  <img src="img/responsivo 1.png">
-  <br>
-  <img src="img/responsivo 2.png">
-  <br>
-  <img src="img/responsivo 3.png">
-  <br>
-  <img src="img/responsivo 4.png">
-  <br>
-<br>
+**Use GitHub Codespaces**
 
-## Criador do Projeto 🤝
+- Navigate to the main page of your repository.
+- Click on the "Code" button (green button) near the top right.
+- Select the "Codespaces" tab.
+- Click on "New codespace" to launch a new Codespace environment.
+- Edit files directly within the Codespace and commit and push your changes once you're done.
 
-<table>
-  <tr>
-    <td align="center">
-      <a href="https://github.com/jv1903">
-        <img src="img/eu.jpg" width="125px;" alt="Foto do João Vitor no Github"/><br>
-        <sub>
-          <b style="font-size: 10px;"João Vitor</b>
-        </sub>
-      </a>
-    </td>
-    
-</table>
+## What technologies are used for this project?
+
+This project is built with:
+
+- Vite
+- TypeScript
+- React
+- shadcn-ui
+- Tailwind CSS
+
+## How can I deploy this project?
+
+Simply open [Lovable](https://lovable.dev/projects/e320684d-0c69-49be-a95e-42a9942c502a) and click on Share -> Publish.
+
+## Can I connect a custom domain to my Lovable project?
+
+Yes, you can!
+
+To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+
+Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
