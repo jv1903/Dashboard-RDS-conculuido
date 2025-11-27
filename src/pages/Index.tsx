@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Activity, FileSpreadsheet } from "lucide-react";
+import { Upload, Activity, Zap, FileSpreadsheet } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
@@ -9,7 +9,7 @@ import NetworkStatus from "@/components/dashboard/NetworkStatus";
 import DailyUpdates from "@/components/dashboard/DailyUpdates";
 import RealTimeAlerts from "@/components/dashboard/RealTimeAlerts";
 import MessagesAndSchedule from "@/components/dashboard/MessagesAndSchedule";
-import logoEquatorial from "@/assets/logo-equatorial.png";
+
 export interface DashboardData {
   "projetos_em_obra": number;
   "projetos_em_projeto": number;
@@ -18,27 +18,24 @@ export interface DashboardData {
   "atualizacoes_dia_titulo": string;
   "Atualizações do dia": string[];
   "Atualizações em tempo real": string[];
-  "mensagens": Array<{
-    title: string;
-    content: string[];
-  }>;
+  "mensagens": Array<{ title: string; content: string[] }>;
   "programacao": string[];
 }
+
 const Index = () => {
-  const {
-    toast
-  } = useToast();
+  const { toast } = useToast();
   const [data, setData] = useState<DashboardData | null>(null);
+
   const processExcelData = (worksheet: XLSX.WorkSheet): DashboardData | null => {
-    const jsonData = XLSX.utils.sheet_to_json(worksheet, {
-      header: 1
-    }) as any[][];
+    const jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1 }) as any[][];
+    
     if (jsonData.length < 2) {
       return null;
     }
 
     // Encontrar índices das colunas baseado no cabeçalho
     const headers = jsonData[0].map((h: string) => h?.toString().toLowerCase().trim());
+
     const findColumnIndex = (possibleNames: string[]) => {
       for (const name of possibleNames) {
         const index = headers.findIndex((h: string) => h?.includes(name));
@@ -46,6 +43,7 @@ const Index = () => {
       }
       return -1;
     };
+
     const statusIdx = findColumnIndex(['status', 'situação', 'estado']);
     const desligadosIdx = findColumnIndex(['desligado', 'als desligado', 'alimentadores']);
     const atualizacoesDiaIdx = 3; // Coluna D (índice 3)
@@ -74,6 +72,7 @@ const Index = () => {
 
     // Processar alimentadores desligados (pode estar em uma célula ou em múltiplas linhas)
     const desligadosList: string[] = [];
+    
     if (desligadosIdx !== -1) {
       for (let i = 1; i < jsonData.length; i++) {
         const row = jsonData[i];
@@ -96,16 +95,15 @@ const Index = () => {
     const firstDataRow = jsonData[1];
 
     // Processar mensagens - buscar colunas de mensagens em ordem e coletar TODAS as linhas
-    const mensagens: Array<{
-      title: string;
-      content: string[];
-    }> = [];
+    const mensagens: Array<{ title: string; content: string[] }> = [];
     const skipColumns = [statusIdx, desligadosIdx, atualizacoesDiaIdx, atualizacoesTempoRealIdx, programacaoIdx];
+    
     for (let colIdx = 0; colIdx < headers.length; colIdx++) {
       if (skipColumns.includes(colIdx)) continue;
+      
       const header = jsonData[0][colIdx]?.toString().trim();
       if (!header) continue;
-
+      
       // Coletar TODAS as linhas dessa coluna
       const contentList: string[] = [];
       for (let i = 1; i < jsonData.length; i++) {
@@ -117,11 +115,9 @@ const Index = () => {
           }
         }
       }
+      
       if (contentList.length > 0) {
-        mensagens.push({
-          title: header,
-          content: contentList
-        });
+        mensagens.push({ title: header, content: contentList });
       }
     }
 
@@ -174,6 +170,7 @@ const Index = () => {
         }
       }
     }
+
     return {
       "projetos_em_obra": emObra,
       "projetos_em_projeto": emProjeto,
@@ -186,33 +183,35 @@ const Index = () => {
       "programacao": programacaoList
     };
   };
+
   const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (!file) return;
+
     const fileExtension = file.name.split('.').pop()?.toLowerCase();
 
     // Processar Excel ou CSV
     if (fileExtension === 'xlsx' || fileExtension === 'xls' || fileExtension === 'csv') {
       const reader = new FileReader();
-      reader.onload = e => {
+      reader.onload = (e) => {
         try {
           const data = e.target?.result;
-          const workbook = XLSX.read(data, {
-            type: 'array'
-          });
+          const workbook = XLSX.read(data, { type: 'array' });
           const firstSheet = workbook.Sheets[workbook.SheetNames[0]];
+          
           const parsedData = processExcelData(firstSheet);
+          
           if (parsedData) {
             setData(parsedData);
             toast({
               title: "Planilha carregada com sucesso",
-              description: `Dados de ${file.name} processados.`
+              description: `Dados de ${file.name} processados.`,
             });
           } else {
             toast({
               title: "Erro ao processar planilha",
               description: "Formato de planilha inválido. Verifique as colunas.",
-              variant: "destructive"
+              variant: "destructive",
             });
           }
         } catch (error) {
@@ -220,28 +219,28 @@ const Index = () => {
           toast({
             title: "Erro ao carregar planilha",
             description: "Não foi possível processar o arquivo.",
-            variant: "destructive"
+            variant: "destructive",
           });
         }
       };
       reader.readAsArrayBuffer(file);
-    }
+    } 
     // Processar JSON
     else if (fileExtension === 'json') {
       const reader = new FileReader();
-      reader.onload = e => {
+      reader.onload = (e) => {
         try {
           const jsonData = JSON.parse(e.target?.result as string);
           setData(jsonData);
           toast({
             title: "Dados carregados com sucesso",
-            description: "Dashboard atualizado com os novos dados."
+            description: "Dashboard atualizado com os novos dados.",
           });
         } catch (error) {
           toast({
             title: "Erro ao carregar dados",
             description: "Formato JSON inválido.",
-            variant: "destructive"
+            variant: "destructive",
           });
         }
       };
@@ -250,17 +249,25 @@ const Index = () => {
       toast({
         title: "Formato não suportado",
         description: "Use arquivos Excel (.xlsx, .xls), CSV ou JSON.",
-        variant: "destructive"
+        variant: "destructive",
       });
     }
   };
-  return <div className="min-h-screen bg-background">
+
+  return (
+    <div className="min-h-screen bg-background">
       {/* Header */}
       <header className="border-b border-border bg-card/50 backdrop-blur-sm sticky top-0 z-50">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
-            <div className="gap-[13px] items-center justify-start flex flex-row px-[37px] my-0 mx-[8px] py-0">
-              <img alt="Grupo Equatorial Energia" src="/lovable-uploads/c9935ce2-b0ef-410a-ad25-cb94c6aece21.png" className="h-12 object-fill border-0 rounded-xl" />
+            <div className="flex items-center gap-3">
+              <div className="h-10 w-10 rounded-lg bg-primary flex items-center justify-center">
+                <Zap className="h-6 w-6 text-primary-foreground" />
+              </div>
+              <div>
+                <h1 className="text-2xl font-bold text-foreground">Ceee Equatorial</h1>
+                <p className="text-sm text-muted-foreground">Dashboard de Performance</p>
+              </div>
             </div>
             
             <div className="flex items-center gap-3">
@@ -277,7 +284,13 @@ const Index = () => {
                   </span>
                 </Button>
               </label>
-              <input id="file-upload" type="file" accept=".xlsx,.xls,.csv,.json" className="hidden" onChange={handleFileUpload} />
+              <input
+                id="file-upload"
+                type="file"
+                accept=".xlsx,.xls,.csv,.json"
+                className="hidden"
+                onChange={handleFileUpload}
+              />
             </div>
           </div>
         </div>
@@ -285,7 +298,8 @@ const Index = () => {
 
       {/* Main Content */}
       <main className="container mx-auto px-4 py-8">
-        {!data ? <Card className="p-12 text-center border-dashed">
+        {!data ? (
+          <Card className="p-12 text-center border-dashed">
             <FileSpreadsheet className="h-16 w-16 mx-auto mb-4 text-muted-foreground" />
             <h2 className="text-2xl font-semibold mb-2">Nenhum dado carregado</h2>
             <p className="text-muted-foreground mb-6">
@@ -307,8 +321,16 @@ const Index = () => {
                 </span>
               </Button>
             </label>
-            <input id="file-upload-main" type="file" accept=".xlsx,.xls,.csv,.json" className="hidden" onChange={handleFileUpload} />
-          </Card> : <div className="space-y-6">
+            <input
+              id="file-upload-main"
+              type="file"
+              accept=".xlsx,.xls,.csv,.json"
+              className="hidden"
+              onChange={handleFileUpload}
+            />
+          </Card>
+        ) : (
+          <div className="space-y-6">
             {/* Row 1: Real-time Alerts + Network Status */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               <RealTimeAlerts alert={data["Atualizações em tempo real"]} />
@@ -317,14 +339,21 @@ const Index = () => {
 
             {/* Row 2: Status Overview + Daily Updates */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-              <StatusOverview emObra={data.projetos_em_obra} emProjeto={data.projetos_em_projeto} concluidos={data.projetos_concluidos} />
+              <StatusOverview 
+                emObra={data.projetos_em_obra}
+                emProjeto={data.projetos_em_projeto}
+                concluidos={data.projetos_concluidos}
+              />
               <DailyUpdates title={data.atualizacoes_dia_titulo} update={data["Atualizações do dia"]} />
             </div>
 
             {/* Row 3: Messages and Schedule (Full Width) */}
             <MessagesAndSchedule messages={data.mensagens} programacao={data.programacao} />
-          </div>}
+          </div>
+        )}
       </main>
-    </div>;
+    </div>
+  );
 };
+
 export default Index;
